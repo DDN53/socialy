@@ -1,22 +1,23 @@
-"use client";
-import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import Navbar from "@/components/Navbar";
 import {
   ClerkProvider,
   SignInButton,
-  SignedIn,
   SignedOut,
-  UserButton
-} from '@clerk/nextjs'
+} from '@clerk/nextjs';
+
 export default function Home() {
   return (
-    <>
-      <ClerkProvider>
-        <SignedOut>
-          <SignInButton mode="modal" className="bg-red-500" />
-         
-        </SignedOut>
-       
-      </ClerkProvider>
-    </>
+    <ClerkProvider>
+      <Navbar />
+      <SignedOut>
+        <SignInButton mode="modal" className="bg-red-500 mr-5">
+          Sign In
+        </SignInButton>
+      </SignedOut>
+      <Button className="ml-3">
+        Click Me
+      </Button>
+    </ClerkProvider>
   );
 }
