@@ -1,11 +1,20 @@
 async function TasksPage() {
+  try {
     const response = await fetch("http://localhost:3000/api/tasks", {
       cache: "no-store",
     });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
     const tasks = await response.json();
-  
     console.log("tasks:", tasks);
-  
-    return <div>TasksPage</div>;
+  } catch (error) {
+    console.error("Error fetching tasks:", error);
   }
-  export default TasksPage;
+
+  return <div>TasksPage</div>;
+}
+
+export default TasksPage;
